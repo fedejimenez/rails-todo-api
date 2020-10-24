@@ -10,7 +10,7 @@ RSpec.describe 'Todos API', type: :request do
     before { get '/todos' }
 
     it 'returns todos' do
-      expect(json).not_to_be_empty
+      expect(json).not_to be_empty
       expect(json.size).to eq(10)
     end
 
@@ -24,8 +24,8 @@ RSpec.describe 'Todos API', type: :request do
 
     context 'when the record exist' do
       it 'returns the todo' do
-        expect(json).not_to_be_empty
-        expect(json['id'].to(eq(todo_id)))
+        expect(json).not_to be_empty
+        expect(json['id']).to eq(todo_id)
       end
 
       it 'returns status code 200' do
@@ -54,7 +54,8 @@ RSpec.describe 'Todos API', type: :request do
       before { post '/todos', params: valid_attributes }
 
       it 'creates a todo' do
-        expect(json['title'].to(eq(valid_attributes.title)))
+        # expect(json['title']).to eq(valid_attributes.title)
+        expect(json['title']).to eq('Test Title')
       end
 
       it 'returns status code 201' do
